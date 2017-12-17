@@ -435,9 +435,13 @@ DriveClient.prototype.authorize = function(immediate, success, error, remember)
 		else
 		{
 			params.immediate = false;
-			params.authuser = -1;
+			if (userId != null) {
+				params.user_id = userId;
+			} else {
+				params.authuser = -1;
+			}
 		}
-		
+
 		gapi.auth.authorize(params, mxUtils.bind(this, function(resp)
 		{
 			// Updates the current user info
